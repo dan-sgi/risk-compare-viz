@@ -1,0 +1,8 @@
+.circle {
+    width: 1.5rem;
+    height: 1.5rem;
+    -webkit-border-radius: 1.5rem;
+    -moz-border-radius: 1.5rem;
+    border-radius: 1.5rem;
+    background: #888;
+  }
