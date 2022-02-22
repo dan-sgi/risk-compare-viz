@@ -24,7 +24,10 @@
                         <div class="card-content">
                             <div class="content">
                                 <h3 class="subtitle is-3">Risk Level</h3>                            
-                                <button class="button is-rounded mb-2 is-small" @click="toggleActive('unhedged')"></button><br>
+                                <button class="button is-rounded mb-2 is-small" 
+                                    :class="{ 'is-focused': noHedgeActive, 'is-dark': noHedgeActive }"
+                                    @click="toggleActive('noHedge')"></button>
+                                <p style="display: inline">&nbsp; More Risk</p><br>
                                 <button class="button is-rounded mb-2 is-small" 
                                     :class="{ 'is-focused': growthActive, 'is-dark': growthActive }"
                                     @click="toggleActive('growth')"></button><br>
@@ -33,7 +36,7 @@
                                     @click="toggleActive('prime')"></button><br>
                                 <button class="button is-rounded is-small" 
                                     :class="{ 'is-focused': tradActive, 'is-dark': tradActive }"
-                                    @click="toggleActive('traditional')"></button>                            
+                                    @click="toggleActive('traditional')"></button><p style="display: inline">&nbsp; Less Risk</p>                          
                             </div>
                         </div>
                     </div>
@@ -43,10 +46,14 @@
                     
                     <div class="card">
                         <div class="card-content">
-                            {{ hello }}
-                            
-                            <div id="chart" ref="chart"></div>
-                            <div id="pieChart" ref="pieChart"></div>
+                            <div class="columns">
+                                <div class="column is-9">
+                                    <div id="chart" ref="chart"></div>
+                                </div>
+                                <div class="column is-3">
+                                    <div id="pieChart" ref="pieChart"></div>                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
