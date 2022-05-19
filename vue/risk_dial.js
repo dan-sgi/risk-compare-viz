@@ -15,7 +15,10 @@ export const riskDial = {
                         ["Hedge", 0],
                         ["Call Spreads", 0]
                     ],
-                    "region": false,
+                    "region": {
+                        axis: "x",
+                        end: 0.5
+                    }
                 },
                 growth: {
                     "delta": 0.85,
@@ -30,7 +33,8 @@ export const riskDial = {
                     ],
                     "region": {
                         axis: "x",
-                        end: 0.5
+                        start: 0.5,
+                        end: 1.5
                     }
                 },
                 prime: {
@@ -46,8 +50,8 @@ export const riskDial = {
                     ],
                     "region": {
                         axis: "x",
-                        start: 0.5,
-                        end: 1.5
+                        start: 1.5,
+                        end: 2.5
                     }
                 },
                 traditional: {
@@ -60,8 +64,8 @@ export const riskDial = {
                     ],
                     "region": {
                         axis: "x",
-                        start: 1.5,
-                        end: 2.5
+                        start: 2.5,
+                        end: 3.5
                     },
 
                 }
@@ -78,8 +82,8 @@ export const riskDial = {
                 bindto: this.$refs["chart"],
                 data: {
                     columns: [
-                    ["Return", 85, 65, 55],
-                    ["Risk", -24, -17, -15],
+                    ["Return", 100, 85, 65, 55],
+                    ["Risk", -100, -24, -17, -15],
                     ],
                     type: "bar", // for ESM specify as: bar()
                     groups: [
@@ -93,6 +97,7 @@ export const riskDial = {
                     x: {
                         type: "category",
                         categories: [
+                                "No Hedge",
                                 "Growth",
                                 "Prime",
                                 "Traditional"
@@ -111,11 +116,9 @@ export const riskDial = {
                    
             });
 
-            if (this.activeStrategy !== 'noHedge') {
-                barChart.regions(
-                  [ this.products[this.activeStrategy]['region'] ]
-                );
-            }
+            barChart.regions(
+                [ this.products[this.activeStrategy]['region'] ]
+              );
         },
         drawPieChart() {
             let cols = this.pieContent;
