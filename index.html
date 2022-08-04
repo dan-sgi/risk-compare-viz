@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@4.0.0/dist/css/bulma-extensions.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@4.0.0/dist/js/bulma-extensions.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
     <script src="./js/billboard.pkgd.min.js"></script>
     <link rel="stylesheet" href="./css/billboard.min.css">
     <link rel="stylesheet" href="./css/insight.min.css">
@@ -21,12 +22,12 @@
     <div id="risk_dial">
         <section class="section is-medium">
             <div class="columns is-flex is-vcentered">
-                <div class="column is-2">
+                <div class="column is-3">
                     <div class="card">
                         <div class="card-content">
-                            <div class="content">
-                                <h3 class="subtitle is-5">Risk Level</h3>   
-                                <div class="columns is-flex is-vcentered">
+                            <div class="content has-text-centered">
+                                <h3 class="is-size-3">Risk Tolerance</h3>   
+                                <!-- <div class="columns is-flex is-vcentered">
                                     <div class="column is-6">
                                         <p class="rotated">&nbsp; &nbsp;Less . . . . . . . More</p>
                                         
@@ -46,26 +47,77 @@
                                             :class="{ 'is-focused': tradActive, 'is-dark': tradActive }"
                                             @click="toggleActive('traditional')"></button>
                                     </div>
-                                </div>   
-                                                      
+                                </div>    -->
+                                <div class="columns is-flex is-vcentered">
+                                    <div id="gaugeChart" style="width: 100%;height:400px;" ref="gaugeChart"></div>
+                                    
+                                </div>
                                                           
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="column is-10">
+                <div class="column is-9">
                     
                     <div class="card">
                         <div class="card-content">
                             <div class="columns">
-                                <div class="column is-9">
-                                    <div id="chart" ref="chart"></div>
+                                    
+                                    <!-- <div id="chart" ref="chart"></div> -->
                                     <!-- <input class="slider is-fullwidth" step="1" min="1" max="4" value="4" type="range" > -->
+                                
+                                <div class="column is-5 has-text-centered">
+                                    <h3 class="is-size-3">Strategy Allocation</h3>
+                                    <div id="dualPie" style="width: 100%;height:400px;" ref="dualPie"></div>
                                 </div>
-                                <div class="column is-3">
+                                <div class="column is-7">
+                                    <!-- prime content -->
+                                    <div class="content prime has-text-centered" v-if="activeStrategy === 'prime'">
+                                        <h3 class="is-size-3 prime">Prime Variation</h3>
+                                        <p>Swan Defined Risk <strong class="prime"><em>Prime</em></strong> Strategy</p>
+                                        <p>Focused on a smooth investment ride with downside protection.</p>
+                                        <!-- <br> -->
+                                        <p><strong class="prime">Step 1:</strong> Buy Equity<br>(low-cost ETFs)</p>
+                                        <!-- <br> -->
+                                        <p><strong class="prime">Step 2:</strong> Hedge the Equity<br><u>At-The-Money</u> LEAPS</p>
+                                        <!-- <br> -->
+                                        <p><strong class="prime">Step 2:</strong> Seek Additional Return<br><u>Buy Calls and Call Spreads, May Sell Calls</u></p>
+                                        <br>
+                                        <p><a class="prime" href="https://content.swanglobalinvestments.com/hubfs/Brochures/Slicks/Swan_DRS_Prime_1-Page_Brochure.pdf">DRS Prime Brochure</a></p>
+                                    </div>
+                                    <!-- flagship content -->
+                                    <div class="content prime has-text-centered" v-if="activeStrategy === 'flagship'">
+                                        <h3 class="is-size-3 prime">Prime Variation</h3>
+                                        <p>Swan Defined Risk <strong class="prime"><em>Prime</em></strong> Strategy</p>
+                                        <p>Focused on a smooth investment ride with downside protection.</p>
+                                        <!-- <br> -->
+                                        <p><strong class="prime">Step 1:</strong> Buy Equity<br>(low-cost ETFs)</p>
+                                        <!-- <br> -->
+                                        <p><strong class="prime">Step 2:</strong> Hedge the Equity<br><u>At-The-Money</u> LEAPS</p>
+                                        <!-- <br> -->
+                                        <p><strong class="prime">Step 2:</strong> Seek Additional Return<br><u>Buy Calls and Call Spreads, May Sell Calls</u></p>
+                                        <br>
+                                        <p><a href="https://content.swanglobalinvestments.com/hubfs/Brochures/Slicks/SMA_Swan_DRS_US_Large_Cap_Sectors_Select_Brochure.pdf">DRS Select Brochure</a></p>
+                                    </div>
+                                    <!-- growth content -->
+                                    <div class="content prime has-text-centered" v-if="activeStrategy === 'growth'">
+                                        <h3 class="is-size-3 prime">Prime Variation</h3>
+                                        <p>Swan Defined Risk <strong class="prime"><em>Prime</em></strong> Strategy</p>
+                                        <p>Focused on a smooth investment ride with downside protection.</p>
+                                        <!-- <br> -->
+                                        <p><strong class="prime">Step 1:</strong> Buy Equity<br>(low-cost ETFs)</p>
+                                        <!-- <br> -->
+                                        <p><strong class="prime">Step 2:</strong> Hedge the Equity<br><u>At-The-Money</u> LEAPS</p>
+                                        <!-- <br> -->
+                                        <p><strong class="prime">Step 2:</strong> Seek Additional Return<br><u>Buy Calls and Call Spreads, May Sell Calls</u></p>
+                                        <br>
+                                        <p><a href="https://content.swanglobalinvestments.com/hubfs/Brochures/Slicks/SMA_DRS_Growth_Brochure_Swan_Global_Investments.pdf">DRS Growth Brochure</a></p>
+                                    </div>
+                                </div>
+                                <!-- <div class="column is-3">
                                     <div id="pieChart" ref="pieChart"></div>                                    
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
