@@ -314,7 +314,7 @@ export const riskDial = {
                     option['series'][0]['data'].push({value: .5, itemStyle:{color: colors['flagship']}});
                     break;
                 case 'growth':
-                    option['series'][0]['data'].push({value: .78, itemStyle:{color: colors['growth']}});
+                    option['series'][0]['data'].push({value: .82, itemStyle:{color: colors['growth']}});
                     break;
             }
                 
