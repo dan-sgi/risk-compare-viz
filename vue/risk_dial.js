@@ -229,7 +229,8 @@ export const riskDial = {
                         width: 20,
                         offsetCenter: [0, '-40%'],
                         itemStyle: {
-                          color: 'auto'
+                        //   color: 'auto',
+                          color: '#555'
                         }
                       },
                     axisTick: {
