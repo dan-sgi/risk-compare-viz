@@ -227,14 +227,14 @@ export const riskDial = {
                         icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
                         length: '12%',
                         width: 20,
-                        offsetCenter: [0, '-70%'],
+                        offsetCenter: [0, '-40%'],
                         itemStyle: {
                           color: 'auto'
                         }
                       },
                     axisTick: {
                         length: 12,
-                        distance: 30,
+                        distance: 10,
                         lineStyle: {
                         color: 'auto',
                         width: 2
@@ -242,7 +242,7 @@ export const riskDial = {
                     },
                     splitLine: {
                         length: 20,
-                        distance: 30,
+                        distance: 10,
                         lineStyle: {
                         color: 'auto',
                         width: 5
