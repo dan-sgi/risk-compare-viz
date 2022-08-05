@@ -199,7 +199,7 @@ export const riskDial = {
                     splitNumber: 6,
                     axisLine: {
                         lineStyle: {
-                            width: 6,
+                            width: 10,
                             color: [
                                 // [0.33, '#FF6E76'],
                                 // [0.66, '#FDDD60'],
@@ -214,24 +214,27 @@ export const riskDial = {
                     progress: {
                         show: true,
                         overlap: true,
-                        width: 40
+                        width: 40,
+                        itemStyle: {
+                            opacity: 0
+                        }
                     },
                     pointer: {
                         show: false
                         
                     },
-                    // pointer: {
-                    //     icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-                    //     length: '12%',
-                    //     width: 20,
-                    //     offsetCenter: [0, '-60%'],
-                    //     itemStyle: {
-                    //       color: 'auto'
-                    //     }
-                    //   },
+                    pointer: {
+                        icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+                        length: '12%',
+                        width: 20,
+                        offsetCenter: [0, '-70%'],
+                        itemStyle: {
+                          color: 'auto'
+                        }
+                      },
                     axisTick: {
                         length: 12,
-                        distance: 40,
+                        distance: 30,
                         lineStyle: {
                         color: 'auto',
                         width: 2
@@ -239,7 +242,7 @@ export const riskDial = {
                     },
                     splitLine: {
                         length: 20,
-                        distance: 40,
+                        distance: 30,
                         lineStyle: {
                         color: 'auto',
                         width: 5
@@ -268,6 +271,7 @@ export const riskDial = {
                             value: 0.333,
                             name: 'prime',
                             itemStyle: {
+                                opacity: 0,
                                 color: colors['prime']
                             },
                             title: {
@@ -278,6 +282,7 @@ export const riskDial = {
                             value: 0.666,
                             name: 'flagship',
                             itemStyle: {
+                                opacity: 0,
                                 color: colors['flagship']
                             },
                             title: {
@@ -288,6 +293,7 @@ export const riskDial = {
                             value: 0.999,
                             name: 'growth',
                             itemStyle: {
+                                opacity: 0,
                                 color: colors['growth']
                             },
                             title: {
@@ -298,6 +304,20 @@ export const riskDial = {
                     }
                 ]
             };
+
+            switch (active){
+                case 'prime':
+                    option['series'][0]['data'].push({value: .18, itemStyle:{color: colors['prime']}});
+                    break;
+                case 'flagship':
+                    option['series'][0]['data'].push({value: .5, itemStyle:{color: colors['flagship']}});
+                    break;
+                case 'growth':
+                    option['series'][0]['data'].push({value: .78, itemStyle:{color: colors['growth']}});
+                    break;
+            }
+                
+
             this.gauge.on('click', function (params) {
                 console.log(params);
                 window.vueApp.toggleStrategy(params);
