@@ -335,7 +335,7 @@ export const riskDial = {
             option = {
                 tooltip: {
                     trigger: 'item',
-                    formatter: '{a} <br/>{b}: {c} ({d}%)'
+                    formatter: '{b}: ({d}%)'
                 },
                 
                 series: [
